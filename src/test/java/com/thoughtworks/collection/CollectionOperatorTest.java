@@ -13,8 +13,8 @@ public class CollectionOperatorTest {
     public void should_return_list_by_Interval() {
         //选出给定区间中所有的数字
 
-        int right = 5;
         int left = 1;
+        int right = 5;
 
         CollectionOperator collectionOperator = new CollectionOperator();
 
