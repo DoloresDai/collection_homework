@@ -1,8 +1,6 @@
 package com.thoughtworks.collection;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Reduce {
 
@@ -13,19 +11,15 @@ public class Reduce {
     }
 
     public int getMaximum() {
-        return Collections.max(arrayList);
+        return arrayList.stream().max((o1, o2) -> o1 - o2).get();
     }
 
     public double getMinimum() {
-        return Collections.min(arrayList);
+        return arrayList.stream().min((o1, o2) -> o1 - o2).get();
     }
 
     public double getAverage() {
-        double sum = 0;
-        for (Integer i : arrayList) {
-            sum += i;
-        }
-        return sum / arrayList.size();
+        return arrayList.stream().mapToDouble(x -> x).average().getAsDouble();
     }
 
     public double getOrderedMedian() {
@@ -35,17 +29,11 @@ public class Reduce {
     }
 
     public int getFirstEven() {
-        Iterator<Integer> i = arrayList.iterator();
-        int temp = 0;
-        while (i.hasNext()) {
-            temp = i.next();
-            if (temp % 2 == 0)
-                break;
-        }
-        return temp;
+        return arrayList.stream().filter(x -> x % 2 == 0).findFirst().get();
     }
 
     public int getIndexOfFirstEven() {
+//        需要下标的lambda不太适合
         int num = getFirstEven();
         int index = 0;
         for (int i = 0; i < arrayList.size(); i++) {
@@ -76,15 +64,7 @@ public class Reduce {
     }
 
     public int getLastOdd() {
-        Collections.reverse(arrayList);
-        Iterator<Integer> i = arrayList.iterator();
-        int temp = 0;
-        while (i.hasNext()) {
-            temp = i.next();
-            if (temp % 2 == 1)
-                break;
-        }
-        return temp;
+        return arrayList.stream().distinct().filter(x -> x % 2 == 1).findFirst().get();
     }
 
     public int getIndexOfLastOdd() {
