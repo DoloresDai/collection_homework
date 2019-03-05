@@ -5,21 +5,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class CollectionOperator {
 
     public List<Integer> getListByInterval(int left, int right) {
-        if (left > right) {
-            int temp = right;
-            right = left;
-            left = temp;
-        }
-        List<Integer> newArrayList = new ArrayList<>();
-        for (int i = left; i <= right; i++) {
-            newArrayList.add(i);
-        }
-        return newArrayList;
-
+return IntStream.range(left,right+1).;
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {

@@ -10,11 +10,16 @@ import java.util.stream.Stream;
 public class Add {
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        return IntStream.range(leftBorder, rightBorder + 1).filter(x -> x % 2 == 0).reduce(0, (x, y) -> x + y);
+        if (leftBorder < rightBorder)
+            return IntStream.range(leftBorder, rightBorder + 1).filter(x -> x % 2 == 0).reduce(0, (x, y) -> x + y);
+        else return IntStream.range(rightBorder, leftBorder + 1).filter(x -> x % 2 == 0).reduce(0, (x, y) -> x + y);
     }
 
     public int getSumOfOdds(int leftBorder, int rightBorder) {
-        return IntStream.range(leftBorder, rightBorder + 1).filter(x -> x % 2 == 1).reduce(0, (x, y) -> x + y);
+        if (leftBorder < rightBorder)
+            return IntStream.range(leftBorder, rightBorder + 1).filter(x -> x % 2 == 1).reduce(0, (x, y) -> x + y);
+        else return IntStream.range(rightBorder, leftBorder + 1).filter(x -> x % 2 == 1).reduce(0, (x, y) -> x + y);
+
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
