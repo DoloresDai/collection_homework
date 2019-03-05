@@ -7,6 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
+import static java.util.stream.Collectors.toList;
+
+class Main {
+    public static void main(String[] args) {
+        Integer[] array = new Integer[]{1, 13, 27, 30, 52, 53};
+        List<Integer> list = Arrays.asList(array);
+        MyMap myMap = new MyMap(list);
+        System.out.println(myMap.mapLetters());
+    }
+}
+
 public class MyMap {
 
     List<Integer> array;
@@ -19,14 +30,11 @@ public class MyMap {
     }
 
     public List<Integer> getTriple() {
-        List<Integer> newArrayList = new ArrayList<>();
-        for (Integer i : array) {
-            newArrayList.add(i * 3);
-        }
-        return newArrayList;
+        return array.stream().map(x -> x * 3).collect(toList());
     }
 
     public List<String> mapLetter() {
+//        需要用到下标，所以lambda不太适合
         List<String> newArrayList = new ArrayList<>();
         for (Integer i : array) {
             newArrayList.add(letters[i]);
@@ -48,16 +56,10 @@ public class MyMap {
     }
 
     public List<Integer> sortFromBig() {
-        TreeSet<Integer> treeSet = new TreeSet<>(array);
-        ArrayList<Integer> newArrayList = new ArrayList<>();
-        newArrayList.addAll(treeSet.descendingSet());
-        return newArrayList;
+        return array.stream().sorted(Integer::compareTo).distinct().collect(toList());
     }
 
     public List<Integer> sortFromSmall() {
-        TreeSet<Integer> treeSet = new TreeSet<>(array);
-        ArrayList<Integer> newArrayList = new ArrayList<>();
-        newArrayList.addAll(treeSet);
-        return newArrayList;
+        return array.stream().sorted(Integer::compareTo).collect(toList());
     }
 }
