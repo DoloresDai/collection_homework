@@ -1,9 +1,9 @@
 package com.thoughtworks.collection;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -22,7 +22,7 @@ public class CollectionOperator {
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
         List<Integer> al = getListByInterval(left, right);
-        return al.stream().filter(x->x%2==0).collect(toList());
+        return al.stream().filter(x -> x % 2 == 0).collect(toList());
     }
 
     public List<Integer> popEvenElments(int[] array) {
@@ -37,37 +37,24 @@ public class CollectionOperator {
     }
 
     public int popLastElment(int[] array) {
+//        简单方法比lambda简单
         return array[array.length - 1];
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
-         List<Integer> first = new ArrayList<>();
+        List<Integer> first = new ArrayList<>();
+        List<Integer> second = new ArrayList<>();
         for (Integer i : firstArray) {
             first.add(i);
         }
-        List<Integer> second = new ArrayList<>();
         for (Integer i : secondArray) {
             second.add(i);
         }
-        first.retainAll(second);
-        return first;
+        return first.stream().filter(second::contains).collect(toList());
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
-
-        List<Integer> first = Arrays.asList(firstArray);
-        List<Integer> second = new ArrayList<>();
-        for (Integer i : secondArray) {
-            second.add(i);
-        }
-        second.removeAll(first);
-        List<Integer> last = new ArrayList<>();
-        for (Integer i : first) {
-            last.add(i);
-        }
-        for (Integer i : second) {
-            last.add(i);
-        }
-        return last;
+        List<Integer> differ = Arrays.asList(secondArray).stream().filter(items -> !(Arrays.asList(firstArray).contains(items))).collect(toList());
+        return Stream.of(Arrays.asList(firstArray), differ).flatMap(Collection::stream).collect(toList());
     }
 }
