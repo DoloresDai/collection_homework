@@ -9,15 +9,6 @@ import java.util.TreeSet;
 
 import static java.util.stream.Collectors.toList;
 
-class Main {
-    public static void main(String[] args) {
-        Integer[] array = new Integer[]{1, 13, 27, 30, 52, 53};
-        List<Integer> list = Arrays.asList(array);
-        MyMap myMap = new MyMap(list);
-        System.out.println(myMap.mapLetters());
-    }
-}
-
 public class MyMap {
 
     List<Integer> array;
