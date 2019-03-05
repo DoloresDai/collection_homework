@@ -18,6 +18,7 @@ public class InverseReduce {
     }
 
     public List<Integer> divideToSmaller(int number) {
+//        lambda没有简单方法简单
         List<Integer> newArrayList = new ArrayList<>();
         newArrayList.add(number);
         while (number > 0) {
