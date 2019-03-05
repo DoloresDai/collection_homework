@@ -2,10 +2,10 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class Flaten {
 
@@ -16,23 +16,11 @@ public class Flaten {
     }
 
     public List<Integer> transformToOneDimesional() {
-        List<Integer> newArrayList = new ArrayList<>();
-        for (Integer[] integers : array) {
-            for (Integer i : integers) {
-                newArrayList.add(i);
-            }
-        }
-        return newArrayList;
+//        lambda在这个方法中没有简单方法简单，且局限性较高
+        return Stream.of(Arrays.asList(array[0]), Arrays.asList(array[1]), Arrays.asList(array[2])).flatMap(Collection::stream).collect(toList());
     }
 
     public List<Integer> transformToUnrepeatedOneDimesional() {
-        List<Integer> arr = transformToOneDimesional();
-        List<Integer> newArrayList = new ArrayList<>();
-        for (Integer i : arr) {
-            if (!newArrayList.contains(i)) {
-                newArrayList.add(i);
-            }
-        }
-        return newArrayList;
+        return Stream.of(Arrays.asList(array[0]), Arrays.asList(array[1]), Arrays.asList(array[2])).flatMap(Collection::stream).distinct().collect(toList());
     }
 }
