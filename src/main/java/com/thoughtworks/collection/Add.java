@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+
 public class Add {
 
     public int getSumOfEvens(int leftBorder, int rightBorder) {
@@ -27,7 +29,7 @@ public class Add {
     }
 
     public List<Integer> getTripleOfOddAndAddTwo(List<Integer> arrayList) {
-        return arrayList.stream().map(this::map).collect(Collectors.toCollection(ArrayList::new));
+        return arrayList.stream().map(this::map).collect(toList());
     }
 
     public int map(int x) {
@@ -62,14 +64,14 @@ public class Add {
     }
 
     public List<Integer> getUnrepeatedFromEvenIndex(List<Integer> arrayList) {
-        return arrayList.stream().filter(x -> x % 2 == 0).distinct().collect(Collectors.toCollection(ArrayList::new));
+        return arrayList.stream().filter(x -> x % 2 == 0).distinct().collect(toList());
     }
 
     public List<Integer> sortByEvenAndOdd(List<Integer> arrayList) {
         arrayList.sort(Integer::compareTo);
-        ArrayList<Integer> even = arrayList.stream().filter(x -> x % 2 == 0).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Integer> odd = arrayList.stream().distinct().filter(x -> x % 2 == 1).collect(Collectors.toCollection(ArrayList::new));
-        return Stream.of(even, odd).flatMap(Collection::stream).collect(Collectors.toCollection(ArrayList::new));
+        List<Integer> even = arrayList.stream().filter(x -> x % 2 == 0).collect(toList());
+        List<Integer> odd = arrayList.stream().distinct().filter(x -> x % 2 == 1).collect(toList());
+        return Stream.of(even, odd).flatMap(Collection::stream).collect(toList());
     }
 
     public List<Integer> getProcessedList(List<Integer> arrayList) {
