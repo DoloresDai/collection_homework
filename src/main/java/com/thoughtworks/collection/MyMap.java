@@ -7,15 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
-class Main {
-    public static void main(String[] args) {
-        Integer[] array = new Integer[]{1, 13, 27, 30, 52, 53};
-        List<Integer> list = Arrays.asList(array);
-        MyMap myMap = new MyMap(list);
-        System.out.println(myMap.mapLetters());
-    }
-}
-
 public class MyMap {
 
     List<Integer> array;
