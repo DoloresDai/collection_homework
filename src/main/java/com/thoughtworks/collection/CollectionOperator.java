@@ -14,9 +14,7 @@ public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
         int[] arr = IntStream.range(left, right + 1).toArray();
         ArrayList<Integer> al = new ArrayList<>();
-        for (Integer i : arr) {
-            al.add(i);
-        }
+        Arrays.stream(arr).forEach(i -> al.add(i));
         return al;
     }
 
@@ -26,30 +24,20 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
-//        用Lambda处理没简单方法简单
         List<Integer> newArrayList = new ArrayList<>();
-        for (Integer i : array) {
-            if (i % 2 == 0) {
-                newArrayList.add(i);
-            }
-        }
+        Arrays.stream(array).filter(x -> x % 2 == 0).forEach(i -> newArrayList.add(i));
         return newArrayList;
     }
 
     public int popLastElment(int[] array) {
-//        简单方法比lambda简单
-        return array[array.length - 1];
+        return Arrays.stream(array).distinct().findFirst().getAsInt();
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
         List<Integer> first = new ArrayList<>();
         List<Integer> second = new ArrayList<>();
-        for (Integer i : firstArray) {
-            first.add(i);
-        }
-        for (Integer i : secondArray) {
-            second.add(i);
-        }
+        Arrays.stream(firstArray).forEach(i -> first.add(i));
+        Arrays.stream(secondArray).forEach(i -> second.add(i));
         return first.stream().filter(second::contains).collect(toList());
     }
 
