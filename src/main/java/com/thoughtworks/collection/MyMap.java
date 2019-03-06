@@ -25,11 +25,8 @@ public class MyMap {
     }
 
     public List<String> mapLetter() {
-//        需要用到下标，所以lambda不太适合
         List<String> newArrayList = new ArrayList<>();
-        for (Integer i : array) {
-            newArrayList.add(letters[i]);
-        }
+        array.stream().forEach(i -> newArrayList.add(letters[i]));
         return newArrayList;
     }
 
