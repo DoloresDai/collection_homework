@@ -45,16 +45,10 @@ public class Reduce {
     }
 
     public boolean isEqual(List<Integer> arrayList) {
+//        此lambda实现的功能不包含顺序的比较
         if (!(this.arrayList.size() == arrayList.size()))
             return false;
-        boolean result = false;
-        for (Integer i : arrayList) {
-            while (true) {
-                result = this.arrayList.contains(i);
-                return result;
-            }
-        }
-        return result;
+        return this.arrayList.stream().allMatch(x -> arrayList.contains(x));
     }
 
     //实现接口SingleLink，然后再此函数内使用
