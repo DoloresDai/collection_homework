@@ -33,22 +33,17 @@ public class Reduce {
     }
 
     public int getIndexOfFirstEven() {
-//        需要下标的lambda不太适合
-        int num = getFirstEven();
-        int index = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).equals(num)) {
-                index = i;
-            }
-        }
-        return index;
+        List<Integer> num = new ArrayList<>();
+        num.add(getFirstEven());
+        return Collections.indexOfSubList(arrayList, num);
     }
 
     public boolean isEqual(List<Integer> arrayList) {
 //        此lambda实现的功能不包含顺序的比较
         if (!(this.arrayList.size() == arrayList.size()))
             return false;
-        return this.arrayList.stream().allMatch(x -> arrayList.contains(x));
+        return this.arrayList.stream().filter(arrayList::contains).
+                allMatch(x -> arrayList.contains(x));
     }
 
     //实现接口SingleLink，然后再此函数内使用
@@ -62,13 +57,8 @@ public class Reduce {
     }
 
     public int getIndexOfLastOdd() {
-        int num = getLastOdd();
-        int index = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).equals(num)) {
-                index = i;
-            }
-        }
-        return arrayList.size() - 1 - index;
+        List<Integer> num = new ArrayList<>();
+        num.add(getLastOdd());
+        return Collections.indexOfSubList(arrayList, num);
     }
 }
